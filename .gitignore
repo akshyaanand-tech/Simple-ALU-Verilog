@@ -1,0 +1,16 @@
+# Simulation outputs
+*.vcd
+*.vvp
+sim/*.vcd
+sim/*.vvp
+
+# Synthesis and log artifacts
+*.log
+*.dot
+syn/*.dot
+syn/*.log
+syn/*_synth.v
+
+# OS generated files
+Thumbs.db
+[Dd]esktop.ini

@@ -1,0 +1,36 @@
+# ==============================================================================
+# Yosys Synthesis Script: 4-Bit Simple ALU
+# Target Module: alu_4bit
+# Project: Simple ALU Using Verilog HDL
+# ==============================================================================
+
+# 1. Read the Register-Transfer Level (RTL) design
+read_verilog src/alu_4bit.v
+
+# 2. Check design hierarchy and establish top module
+hierarchy -check -top alu_4bit
+
+# 3. High-level synthesis passes (Processes, FSMs, Memory, Cleanups)
+proc
+opt
+fsm
+opt
+memory
+opt
+
+# 4. Low-level technology mapping into generic standard logic gates
+techmap
+opt
+
+# 5. Logic optimization and gate mapping via ABC
+abc -g AND,OR,XOR
+clean
+
+# 6. Print synthesis statistics to terminal
+stat
+
+# 7. Write synthesized gate-level Verilog netlist
+write_verilog -noattr syn/alu_synth.v
+
+# 8. Generate Graphviz DOT schematic representation
+show -format dot -prefix syn/alu_schematic alu_4bit
